@@ -59,19 +59,21 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
+    color: '#000',
   },
   rightCol: {
     alignItems: 'center',
   },
   badge: {
-    // badge
     backgroundColor: '#f0f0f0',
     borderRadius: 16,
     paddingVertical: 4,
     paddingHorizontal: 8,
+    color: '#000',
   },
   badgeLabel: {
     fontSize: 16,
+    color: '#000',
   },
 });
 

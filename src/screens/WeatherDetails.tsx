@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useWeather} from '../hooks/useWeather';
 import {WeatherScreenProps} from '../types';
 import Loader from '../components/Loader';
 import WeatherItem from '../components/WeatherItem';
+import InfoItem from '../components/InfoItem';
 
 type Props = WeatherScreenProps<'WeatherDetails'>;
 
@@ -21,36 +22,12 @@ const WeatherDetails = ({route}: Props): JSX.Element => {
   return (
     <View>
       <WeatherItem item={data} />
-      <View style={styles.section}>
-        <Text>Humidity</Text>
-        <Text>{data.main.humidity}%</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Pressure</Text>
-        <Text>{data.main.pressure} hPa</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Wind</Text>
-        <Text>{data.wind.speed} m/s</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Visibility</Text>
-        <Text>{data.visibility / 1000} km</Text>
-      </View>
+      <InfoItem label="Humidity" value={`${data.main.humidity}%`} />
+      <InfoItem label="Pressure" value={`${data.main.pressure} hPa`} />
+      <InfoItem label="Wind" value={`${data.wind.speed} m/s`} />
+      <InfoItem label="Visibility" value={`${data.visibility / 1000} km`} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  section: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 16,
-    padding: 16,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-});
 
 export default WeatherDetails;
