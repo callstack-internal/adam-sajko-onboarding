@@ -1,34 +1,25 @@
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useColorScheme} from 'react-native';
+import {RootNavigator} from './src/RootNavigator';
 
-function HomeScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 
 function App() {
+  const scheme = useColorScheme();
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <RootNavigator />
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;
