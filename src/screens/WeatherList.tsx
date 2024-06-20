@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {FlatList, ListRenderItemInfo} from 'react-native';
+import {FlatList, ListRenderItemInfo, Text} from 'react-native';
 import {useWeatherList} from '../hooks/useWeatherList';
 import {WeatherDetails, WeatherScreenProps} from '../types';
 import Loader from '../components/Loader';
@@ -30,8 +30,16 @@ const WeatherList = ({navigation}: Props): JSX.Element => {
     return <Loader />;
   }
 
+  if (!data) {
+    return <Text>No data found</Text>;
+  }
+
   return (
-    <FlatList keyExtractor={keyExtractor} data={data} renderItem={renderItem} />
+    <FlatList
+      keyExtractor={keyExtractor}
+      data={data.list}
+      renderItem={renderItem}
+    />
   );
 };
 

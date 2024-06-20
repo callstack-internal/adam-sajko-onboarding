@@ -1,5 +1,5 @@
 import {WEATHER_API_KEY, WEATHER_API_URL, cityIds} from '../constants';
-import {WeatherDetails} from '../types';
+import {WeatherList} from '../types';
 
 export async function getWeatherList() {
   const response = await fetch(
@@ -11,7 +11,7 @@ export async function getWeatherList() {
     );
   }
   const data = await response.json();
-  return (data?.list || []) as WeatherDetails[];
+  return data as WeatherList;
 }
 
 export const queryKey = 'get-weather-list';

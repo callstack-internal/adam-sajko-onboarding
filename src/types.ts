@@ -23,19 +23,48 @@ export type WeatherScreenProps<Route extends keyof WeatherStackParamsList> =
   >;
 
 export interface WeatherDetails {
-  id: number;
-  name: string;
+  coord: {
+    lon: number;
+    lat: number;
+  };
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  base: string;
   main: {
     temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
     pressure: number;
     humidity: number;
   };
   visibility: number;
   wind: {
     speed: number;
+    deg: number;
   };
-  weather: {
-    main: 'Clear' | 'Clouds' | 'Rain' | 'Snow';
-    icon: string;
-  }[];
+  clouds: {
+    all: number;
+  };
+  dt: number;
+  sys: {
+    type: number;
+    id: number;
+    country: string;
+    sunrise: number;
+    sunset: number;
+  };
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
+}
+
+export interface WeatherList {
+  cnt: number;
+  list: WeatherDetails[];
 }
