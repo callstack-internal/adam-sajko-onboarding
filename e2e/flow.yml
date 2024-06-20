@@ -1,0 +1,14 @@
+appId: ${APP_ID}
+---
+- launchApp
+- assertVisible: 'Weather'
+- assertVisible:
+    id: 'Warsaw'
+    index: 0
+- tapOn:
+    id: 'Warsaw'
+    index: 0
+- assertVisible: 'Humidity'
+- assertVisible: 'Pressure'
+- assertVisible: 'Wind'
+- assertVisible: 'Visibility'
