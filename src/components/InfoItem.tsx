@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import {createStyles} from '../theme';
 
 interface Props {
   label: string;
@@ -7,6 +8,8 @@ interface Props {
 }
 
 const InfoItem = ({label, value}: Props): JSX.Element => {
+  const styles = useStyles();
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -15,22 +18,22 @@ const InfoItem = ({label, value}: Props): JSX.Element => {
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = createStyles((theme) => ({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 16,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: theme.card,
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: theme.border,
   },
   label: {
-    color: '#000',
+    color: theme.description,
   },
   value: {
-    color: '#000',
+    color: theme.text,
   },
-});
+}));
 
 export default InfoItem;
