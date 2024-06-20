@@ -1,9 +1,9 @@
-import {useQuery} from 'react-query';
+import {useQuery} from '@tanstack/react-query';
 import {getWeatherList, queryKey} from '../queries/get-weather-list';
 
 export function useWeatherList() {
   return useQuery({
-    queryKey,
+    queryKey: [queryKey],
     queryFn: getWeatherList,
   });
 }

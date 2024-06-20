@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList, WeatherStackParamsList} from './types';
 import WeatherList from './screens/WeatherList';
@@ -25,16 +24,14 @@ function WeatherStackScreen() {
   );
 }
 
-export function Container() {
+export function RootNavigator() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Weather"
-          component={WeatherStackScreen}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Weather"
+        component={WeatherStackScreen}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 }

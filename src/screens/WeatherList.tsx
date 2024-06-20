@@ -8,7 +8,11 @@ import WeatherItem from '../components/WeatherItem';
 type Props = WeatherScreenProps<'WeatherList'>;
 
 const WeatherList = ({navigation}: Props): JSX.Element => {
-  const {data, isLoading} = useWeatherList();
+  const {data, isLoading, isRefetching, refetch} = useWeatherList();
+
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   const renderItem = useCallback(
     ({item}: ListRenderItemInfo<WeatherDetails>) => {
@@ -37,6 +41,8 @@ const WeatherList = ({navigation}: Props): JSX.Element => {
   return (
     <FlatList
       keyExtractor={keyExtractor}
+      onRefresh={handleRefresh}
+      refreshing={isRefetching}
       data={data.list}
       renderItem={renderItem}
     />
