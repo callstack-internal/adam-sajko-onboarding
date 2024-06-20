@@ -1,4 +1,4 @@
-appId: org.reactjs.native.example.WeatherApp
+appId: ${APP_ID}
 ---
 - launchApp
 - assertVisible: 'Weather'
