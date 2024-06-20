@@ -9,7 +9,7 @@ interface Props {
 
 const WeatherItem = ({item, onPress}: Props): JSX.Element => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable style={styles.container} onPress={onPress} testID={item.name}>
       <View style={styles.leftCol}>
         <Image style={styles.icon} src={getIconSource(item.weather[0].icon)} />
         <View style={styles.info}>
