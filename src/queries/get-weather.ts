@@ -1,11 +1,23 @@
 import {WEATHER_API_KEY, WEATHER_API_URL} from '../constants';
 import {WeatherDetails} from '../types';
 
-export type SearchParams = {id: number | string};
+export type SearchParams =
+  | {id: number | string}
+  | {latitude: number; longitude: number};
 
 export async function getWeather(params: SearchParams) {
   const url = `${WEATHER_API_URL}/weather`;
-  const qs = [`id=${params.id}`, 'units=metric', `appId=${WEATHER_API_KEY}`];
+  const qs = [];
+
+  if ('id' in params) {
+    qs.push(`id=${params.id}`);
+  } else {
+    qs.push(`lat=${params.latitude}`);
+    qs.push(`lon=${params.longitude}`);
+  }
+
+  qs.push('units=metric');
+  qs.push(`appId=${WEATHER_API_KEY}`);
 
   const response = await fetch(`${url}?${qs.join('&')}`);
 

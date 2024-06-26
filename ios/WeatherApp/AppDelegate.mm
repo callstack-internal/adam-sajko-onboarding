@@ -2,6 +2,8 @@
 
 #import <React/RCTBundleURLProvider.h>
 
+#import "WeatherApp-Swift.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
