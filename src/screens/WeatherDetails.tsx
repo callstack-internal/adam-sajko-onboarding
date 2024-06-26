@@ -8,8 +8,9 @@ import InfoItem from '../components/InfoItem';
 
 type Props = WeatherScreenProps<'WeatherDetails'>;
 
-const WeatherDetails = ({route}: Props): JSX.Element => {
-  const {data, isLoading} = useWeather(route.params.cityId);
+const WeatherDetails = ({route}: Props) => {
+  const {id} = route.params;
+  const {data, isLoading} = useWeather({id});
 
   if (isLoading) {
     return <Loader />;

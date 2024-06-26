@@ -18,7 +18,7 @@ function WeatherStackScreen() {
       <WeatherStack.Screen
         name="WeatherDetails"
         component={WeatherDetails}
-        options={{title: 'Details'}}
+        options={({route}) => ({title: route.params.title || 'Details'})}
       />
     </WeatherStack.Navigator>
   );

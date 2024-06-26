@@ -8,8 +8,9 @@ interface Props {
   onPress?: () => void;
 }
 
-const WeatherItem = ({item, onPress}: Props): JSX.Element => {
+const WeatherItem = ({item, onPress}: Props) => {
   const styles = useStyles();
+  const roundedTemp = Math.round(item.main.temp);
 
   return (
     <Pressable style={styles.container} onPress={onPress} testID={item.name}>
@@ -22,7 +23,7 @@ const WeatherItem = ({item, onPress}: Props): JSX.Element => {
       </View>
       <View style={styles.rightCol}>
         <View style={styles.badge}>
-          <Text style={styles.badgeLabel}>{item.main.temp}°F</Text>
+          <Text style={styles.badgeLabel}>{roundedTemp}°C</Text>
         </View>
       </View>
     </Pressable>

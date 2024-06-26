@@ -3,7 +3,7 @@ import Config from 'react-native-config';
 export const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5';
 export const WEATHER_API_KEY = Config.WEATHER_API_KEY || '';
 
-export const cityIds = [
+export const CITY_IDS = [
   703448, // Kyiv, UA
   692194, // Sumy, UA
   756135, // Warsaw, PL

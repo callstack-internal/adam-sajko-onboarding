@@ -1,9 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
-import {getWeather, queryKey} from '../queries/get-weather';
+import {SearchParams, getWeather, queryKey} from '../queries/get-weather';
 
-export function useWeather(cityId: number | string) {
+export function useWeather(params: SearchParams, config?: {enabled: boolean}) {
+  const paramQueryKeys = [params.id];
+
   return useQuery({
-    queryKey: [queryKey, cityId],
-    queryFn: () => getWeather(cityId),
+    queryKey: [queryKey, ...paramQueryKeys],
+    queryFn: () => getWeather(params),
+    ...config,
   });
 }

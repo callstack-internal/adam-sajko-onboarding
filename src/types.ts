@@ -6,7 +6,10 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type WeatherStackParamsList = {
   WeatherList: undefined;
-  WeatherDetails: {cityId: number | string};
+  WeatherDetails: {
+    id: number | string;
+    title?: string;
+  };
 };
 
 export type RootStackParamList = {
