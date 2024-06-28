@@ -1,0 +1,10 @@
+name: 'Build Android App'
+description: 'Build the Android app'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build Android App
+      shell: bash
+      run: ./gradlew assembleRelease
+      working-directory: android

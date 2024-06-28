@@ -1,11 +1,18 @@
 name: 'Install dependencies'
 description: 'Install dependencies for the project'
+inputs:
+  WEATHER_API_KEY:
+    description: 'Weather API key'
+    required: true
+
 runs:
   using: 'composite'
   steps:
-    - name: Copy .env file
+    - name: Create .env file
       shell: bash
-      run: cp .env.template .env
+      run: |
+        touch .env
+        echo WEATHER_API_KEY=${{ inputs.WEATHER_API_KEY }} >> .env
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4

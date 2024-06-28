@@ -1,0 +1,51 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  ios-e2e-tests:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/install
+        with:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+      - uses: ./.github/actions/install-ios
+      - uses: ./.github/actions/build-ios
+      - uses: mobile-dev-inc/action-maestro-cloud@v1.8.1
+        with:
+          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          app-file: build/WeatherApp.app
+
+  android-e2e-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    outputs:
+      apk: android/app/build/outputs/apk/release/app-release.apk
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/install
+        with:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+      - uses: ./.github/actions/install-android
+      - uses: ./.github/actions/build-android
+      - uses: mobile-dev-inc/action-maestro-cloud@v1.8.1
+        with:
+          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          app-file: android/app/build/outputs/apk/release/app-release.apk
