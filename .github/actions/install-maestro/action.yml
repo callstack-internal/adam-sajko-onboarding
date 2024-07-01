@@ -1,0 +1,12 @@
+name: 'Install Maestro dependencies'
+description: 'Install dependencies for the project'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install dependencies and Maestro
+      shell: bash
+      run: |
+        export MAESTRO_VERSION=1.36.0
+        curl -Ls "https://get.maestro.mobile.dev" | bash
+        brew tap facebook/fb
+        brew install facebook/fb/idb-companion
