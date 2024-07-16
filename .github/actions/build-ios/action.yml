@@ -1,0 +1,15 @@
+name: 'Build iOS App'
+description: 'Build the iOS app'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Build iOS App
+      shell: bash
+      run: |
+        xcodebuild build -scheme 'WeatherApp' \
+                         -configuration Debug \
+                         -workspace 'WeatherApp.xcworkspace' \
+                         -destination 'generic/platform=iOS Simulator' CONFIGURATION_BUILD_DIR=$PWD/build
+
+      working-directory: ios

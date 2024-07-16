@@ -1,0 +1,25 @@
+name: 'Install iOS dependencies'
+description: 'Install dependencies for the project'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: true
+
+    - name: Install Bundler
+      shell: bash
+      run: bundle install
+      working-directory: ios
+
+    - name: Install CocoaPods
+      shell: bash
+      run: sudo gem install cocoapods
+
+    - name: Install Pods
+      shell: bash
+      run: pod install
+      working-directory: ios

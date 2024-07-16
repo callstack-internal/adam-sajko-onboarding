@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: CI
+name: Unit Tests
 
 on:
   push:
@@ -21,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/install
+        with:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
       - name: Run TypeScript
         env:
